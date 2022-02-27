@@ -1,0 +1,30 @@
+{
+  "name": "bot",
+  "version": "1.0.0",
+  "description": "``` ┌───────────────────────────────────────────────┐                                        _             __ _  ___   ___  _ __ _ __ ___   (_) ___       / _` |/ _ \\ / _ \\| '__| '_ ` _ \\  | |/ _ \\     | (_| | (_) | (_) | |  | | | | | |_| | (_) |     \\__, |\\___/ \\___/|_|  |_| |_| |_(_)_|\\___/      |___/                                       \t\t\t     🌩 𝘼𝙣𝙮𝙤𝙣𝙚 𝙘𝙖𝙣 𝙙𝙚𝙫𝙚𝙡𝙤𝙥! └───────────────────────────────────────────────┘ ```",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node -r dotenv/config src",
+    "compile": "rimraf dist && tsc",
+    "lint": "eslint --ext .ts src",
+    "lint:fix": "eslint --ext .ts src --fix",
+    "tests": "npm run compile && npm run lint",
+    "tests:fix": "npm run compile && npm run lint:fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sapphire/decorators": "^4.2.5",
+    "@sapphire/framework": "^2.4.1",
+    "@sapphire/plugin-api": "^3.1.1",
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0",
+    "ts-node": "^10.5.0"
+  },
+  "devDependecies": {
+    "@types/node": "^17.0.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.3.5"
+  }
+}
