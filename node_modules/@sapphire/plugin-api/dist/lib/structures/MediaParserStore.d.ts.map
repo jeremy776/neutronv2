@@ -1,0 +1,1 @@
+{"version":3,"file":"MediaParserStore.d.ts","sourceRoot":"","sources":["../../../src/lib/structures/MediaParserStore.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,EAAE,MAAM,kBAAkB,CAAC;AACzC,OAAO,EAAE,WAAW,EAAE,MAAM,eAAe,CAAC;AAE5C;;GAEG;AACH,qBAAa,gBAAiB,SAAQ,KAAK,CAAC,WAAW,CAAC;;IAKvD;;;;OAIG;IACI,gBAAgB,CAAC,WAAW,EAAE,MAAM,GAAG,MAAM;CAIpD"}
