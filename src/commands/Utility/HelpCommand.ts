@@ -2,11 +2,6 @@ import { CommandOptions, Command, Args } from '@sapphire/framework';
 import { MessageEmbed, Message } from 'discord.js';
 import { ApplyOptions } from '@sapphire/decorators';
 
-interface ICategory {
-  utility: string,
-  economy: string
-}
-
 @ApplyOptions<CommandOptions>({
 	name: 'help',
 	detailedDescription: "help [command]",
@@ -32,19 +27,19 @@ export class HelpCommand extends Command {
 		}
 		
 		const categories = [...new Set(this.container.stores.get('commands').map(x => x.fullCategory[x.fullCategory.length - 1]))];
-		const categoryEmoji: ICategory = {
+		const categoryEmoji = {
 		  "utility": "<:globe:947510763071881216>",
 		  "economy": "<:coin:947526776077287465>"
 		}
 		const embed = new MessageEmbed()
-		.setDescription(`・My global prefix is \`${this.container.client.options.defaultPrefix}\`.\n<:reply_2:947503649125457980>・My prefix on this server is \`${this.container.client.fetchPrefix(message)}\`.\n<:reply_1:947503681719382066>・Type \`${this.container.client.fetchPrefix(message)}help [command]\` for more info command`)
+		.setDescription(`・My global prefix is \`${this.container.client.options.defaultPrefix}\`\n<:reply_1:947503681719382066>・Type \`${this.container.client.fetchPrefix(message)}help [command]\` for more info command`)
 		.setAuthor({ name: `${this.container.client.user?.username}`, iconURL: `${this.container.client.user?.displayAvatarURL()}` })
 		.setColor('GREEN');
 		for(let category of categories) {
 			const commands = this.container.stores.get('commands').filter(x => x.category == category);
-			//let emot: 
 			embed.fields.push({
-				name: `${categoryEmoji[category.toLowerCase() as keyof typeof emoji]} ・ ${(category as string)}`,
+				//@ts-ignore
+				name: `${categoryEmoji[category.toLowerCase()]} ・ ${(category as string)}`,
 				value: commands.map(x => `\`${x.name}\``).join(', '),
 				inline: false
 			})

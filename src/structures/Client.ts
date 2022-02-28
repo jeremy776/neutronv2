@@ -15,7 +15,11 @@ export class Client extends SapphireClient {
 			baseUserDirectory: join(__dirname, '..'),
 			caseInsensitiveCommands: true,
 			caseInsensitivePrefixes: true,
-			intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+			intents: [
+				Intents.FLAGS.GUILDS,
+				Intents.FLAGS.GUILD_MESSAGES,
+				Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS
+			],
 			...clientOptons
 		});
 	}
