@@ -21,7 +21,7 @@ export class CreditCommand extends Command {
     
     let embed = new MessageEmbed()
     .setAuthor({ name: `List Credit - ${this.container.client.user?.username}` })
-    .setColor("GREEN")
+    .setColor(this.container.client.config.Color)
     .setTimestamp()
     list.map(x => {
       embed.fields.push({

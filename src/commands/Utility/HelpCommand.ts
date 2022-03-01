@@ -35,7 +35,7 @@ export class HelpCommand extends Command {
 		const embed = new MessageEmbed()
 		.setDescription(`・My global prefix is \`${this.container.client.options.defaultPrefix}\`\n<:reply_1:947503681719382066>・Type \`${this.container.client.fetchPrefix(message)}help [command]\` for more info command`)
 		.setAuthor({ name: `${this.container.client.user?.username}`, iconURL: `${this.container.client.user?.displayAvatarURL()}` })
-		.setColor('GREEN');
+		.setColor(this.container.client.config.Color);
 		for(let category of categories) {
 			const commands = this.container.stores.get('commands').filter(x => x.category == category);
 			embed.fields.push({

@@ -21,7 +21,7 @@ export class BalanceCommand extends Command {
             userdata = data[0];
         }
         let embed = new MessageEmbed()
-        .setColor('GREEN')
+        .setColor(this.container.client.config.Color)
         .setAuthor({ name:`${message.author?.username} Balance`})
         .addField('<:coin:947526776077287465>・Coin', `<:reply_1:947503681719382066>・**\`${userdata.balance?.toLocaleString()}\`**`)
         .addField('<:creditcard:947773232143032350>・Bank', `<:reply_1:947503681719382066>・**\`${userdata.bank?.toLocaleString()}\`** / **\`${userdata.maxBank?.toLocaleString()}\`**`)

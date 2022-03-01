@@ -21,7 +21,7 @@ export class AvatarCommand extends Command {
     let embed = new MessageEmbed()
     .setTimestamp()
     .setAuthor({ name: `Avatar from ${user?.username}`})
-    .setColor("GREEN")
+    .setColor(this.container.client.config.Color)
     .setDescription(`[Link Avatar](${user.displayAvatarURL({dynamic: true, size: 2048, format: "png"})})`)
     .setImage(user.displayAvatarURL({ dynamic: true, size: 2048, format: "png"}))
     return message.reply({ embeds: [embed] })

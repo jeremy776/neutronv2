@@ -25,7 +25,7 @@ export class DailyCommand extends Command {
     let random = Math.floor(Math.random() * 20000)+2000;
     
     let embed = new MessageEmbed()
-    .setColor("GREEN")
+    .setColor(this.container.client.config.Color)
     .setAuthor({ name: `${message.author?.username.toUpperCase()} Daily coin` })
     .setDescription(`・**${random.toLocaleString()}** has been added to your wallet\n<:reply_2:947503649125457980>・Your next daily is ready in\n<:reply_1:947503681719382066>・**23 Hours**, **59 Minutes**, and **59 Seconds**`)
     return message.reply({ embeds: [embed] })

@@ -2,6 +2,8 @@ import { SapphireClient, SapphireClientOptions } from '@sapphire/framework';
 import { Intents } from 'discord.js';
 import { join } from 'path';
 import { Prefix } from '../config';
+import config from '../config';
+
 import "@sapphire/plugin-api/register";
 
 export class Client extends SapphireClient {
@@ -22,5 +24,12 @@ export class Client extends SapphireClient {
 			],
 			...clientOptons
 		});
+	}
+	public config = config;
+}
+
+declare module "@sapphire/framework" {
+	export interface SapphireClient {
+		config: typeof config;
 	}
 }
