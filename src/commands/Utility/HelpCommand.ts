@@ -23,13 +23,14 @@ export class HelpCommand extends Command {
 			.addField("Description", `<:reply_1:947503681719382066> ${command.description ? command.description : 'No Description'}`)
 			.addField("Aliases", `<:reply_1:947503681719382066> \`${command.aliases.join(", ")}\``)
 			.addField("Usage", `<:reply_1:947503681719382066> \`${this.container.client.fetchPrefix(message)}${command.detailedDescription}\``)
-			return message.channel.send({ embeds: [emb] });
+			return message.reply({ embeds: [emb] });
 		}
 		
 		const categories = [...new Set(this.container.stores.get('commands').map(x => x.fullCategory[x.fullCategory.length - 1]))];
 		const categoryEmoji = {
-		  "utility": "<:globe:947510763071881216>",
-		  "economy": "<:coin:947526776077287465>"
+		  "utility": "<:utility:947773901998526488>",
+		  "economy": "<:coin:947526776077287465>",
+		  "information": "<:info:947920627505958935>"
 		}
 		const embed = new MessageEmbed()
 		.setDescription(`・My global prefix is \`${this.container.client.options.defaultPrefix}\`\n<:reply_1:947503681719382066>・Type \`${this.container.client.fetchPrefix(message)}help [command]\` for more info command`)
@@ -44,6 +45,6 @@ export class HelpCommand extends Command {
 				inline: false
 			})
 		}
-		return message.channel.send({ embeds: [embed] });
+		return message.reply({ embeds: [embed] });
 	}
 }

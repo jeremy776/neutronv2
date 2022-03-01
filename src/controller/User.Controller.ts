@@ -5,7 +5,11 @@ export async function createUser(msg: Message) {
     const user = await User.create({
         id: msg.author?.id,
         username: msg.author?.username,
-        discriminator: msg.author?.discriminator
+        discriminator: msg.author?.discriminator,
+        daily: {
+          count: 0,
+          lastDaily: 0
+        }
     });
     return user;
 }

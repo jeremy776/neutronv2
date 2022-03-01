@@ -5,8 +5,8 @@ import { createUser, getUser } from '../../controller/User.Controller';
 
 @ApplyOptions<CommandOptions> ({
     name: 'balance',
-    aliases: ['bal'],
-    detailedDescription: 'bal [@user]',
+    aliases: ["balance", 'bal'],
+    detailedDescription: 'balance [@user]',
     description: 'view the user coin amount',
     requiredClientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS']
 })
@@ -20,11 +20,11 @@ export class BalanceCommand extends Command {
         } else {
             userdata = data[0];
         }
-        
         let embed = new MessageEmbed()
         .setColor('GREEN')
+        .setAuthor({ name:`${message.author?.username} Balance`})
         .addField('<:coin:947526776077287465>・Coin', `<:reply_1:947503681719382066>・**\`${userdata.balance?.toLocaleString()}\`**`)
-        .addField('Bank', `・**\`${userdata.bank?.toLocaleString()}\`** / **\`${userdata.maxBank?.toLocaleString()}\`**`)
+        .addField('<:creditcard:947773232143032350>・Bank', `<:reply_1:947503681719382066>・**\`${userdata.bank?.toLocaleString()}\`** / **\`${userdata.maxBank?.toLocaleString()}\`**`)
         return message.reply({ embeds: [embed] });
     }
 }

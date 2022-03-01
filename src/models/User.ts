@@ -1,7 +1,6 @@
 import { prop, getModelForClass, ReturnModelType } from '@typegoose/typegoose';
 
 export class UserClass {
-
     @prop({ type: String })
     public id?: string;
 
@@ -25,7 +24,7 @@ export class UserClass {
 
     @prop({ type: () => [String], required: false, default: [] })
     public items?: string[];
-
+    
     @prop({ type: Date, required: false, default: Date.now() })
     public useBotAt?: Date;
 
