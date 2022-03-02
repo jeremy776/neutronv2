@@ -30,7 +30,8 @@ export class HelpCommand extends Command {
 		const categoryEmoji = {
 		  "utility": "<:utility:947773901998526488>",
 		  "economy": "<:coin:947526776077287465>",
-		  "information": "<:info:947920627505958935>"
+		  "information": "<:info:947920627505958935>",
+		  "valorant": "<:premium:948448712173166653>"
 		}
 		const embed = new MessageEmbed()
 		.setDescription(`・My global prefix is \`${this.container.client.options.defaultPrefix}\`\n<:reply_1:947503681719382066>・Type \`${this.container.client.fetchPrefix(message)}help [command]\` for more info command`)

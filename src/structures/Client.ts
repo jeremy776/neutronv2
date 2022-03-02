@@ -3,8 +3,10 @@ import { Intents } from 'discord.js';
 import { join } from 'path';
 import { Prefix } from '../config';
 import config from '../config';
-
+import { API, Regions, Locales, Queue, RiotAPIError } from "node-valorant-api";
 import "@sapphire/plugin-api/register";
+
+const valorant = new API(Regions.NA, 'RGAPI-e4691f04-379d-44cf-860e-e27abd83acfd', Regions.AMERICAS);
 
 export class Client extends SapphireClient {
 	public constructor(clientOptons?: SapphireClientOptions) {
@@ -25,11 +27,13 @@ export class Client extends SapphireClient {
 			...clientOptons
 		});
 	}
+	public valorant = valorant;
 	public config = config;
 }
 
 declare module "@sapphire/framework" {
 	export interface SapphireClient {
 		config: typeof config;
+		valorant: typeof valorant;
 	}
 }

@@ -19,6 +19,7 @@
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.0",
     "mongoose": "^6.2.3",
+    "node-valorant-api": "^0.5.0",
     "ts-node": "^10.5.0"
   },
   "devDependecies": {
