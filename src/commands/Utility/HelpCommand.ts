@@ -29,13 +29,7 @@ export class HelpCommand extends Command {
 		const categories = [...new Set(this.container.stores.get('commands').map(x => x.fullCategory[x.fullCategory.length - 1]))];
 		const categoryEmoji = {
 		  "utility": "<:utility:947773901998526488>",
-<<<<<<< HEAD
-		  "economy": "<:coin:947526776077287465>",
-		  "information": "<:info:947920627505958935>",
-		  "valorant": "<:premium:948448712173166653>"
-=======
 		  "information": "<:info:947920627505958935>"
->>>>>>> 836874a (p)
 		}
 		const embed = new MessageEmbed()
 		.setDescription(`・My global prefix is \`${this.container.client.options.defaultPrefix}\`\n<:reply_1:947503681719382066>・Type \`${this.container.client.fetchPrefix(message)}help [command]\` for more info command`)
