@@ -24,6 +24,7 @@ export class Client extends SapphireClient {
 				Intents.FLAGS.GUILD_MESSAGES,
 				Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS
 			],
+			partials: ["REACTION", "MESSAGE", "CHANNEL", "USER", "GUILD_MEMBER"],
 			...clientOptons
 		});
 	}
