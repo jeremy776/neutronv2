@@ -12,6 +12,11 @@ const LANG = [
         name: ['Python', 'Py'],
         comment: '#',
         format: "py"
+    },
+    {
+      name: ["Java", "Kotlin", "Kt"],
+      comment: "//",
+      format: "kotlin"
     }
 ]
 
@@ -54,10 +59,10 @@ export class generateCodeCommand extends Command {
             model: this.container.client.config.OPENAI.model,
             prompt: `${getCode?.slice(1).join(' ').split(new RegExp(getLanguage.comment, 'g')).slice(1).map(x => `${getLanguage.comment}${x}`).join('\n')} in ${getLanguage.name[0]}\n\n${getLanguage.name[0]}:`,
             temperature: 1,
-            max_tokens: 60,
+            max_tokens: 1500,
             top_p: 1.0,
-            frequency_penalty: 0.0,
-            presence_penalty: 0.0,
+            frequency_penalty: 0.5,
+            presence_penalty: 0.5,
         });
 
         // console.log(`${getCode}\n\n${getLanguage.name[0]}`)

@@ -38,7 +38,7 @@ export class CorrectGrammarCommand extends Command {
             const response = await this.container.client.openai.createCompletion({
                 model: this.container.client.config.OPENAI.model,
                 prompt: `Corret this to standard ${pickTheLang.name[0]}:\n\n${text}`,
-                temperature: 0,
+                temperature: 1,
                 max_tokens: 60,
                 top_p: 1.0,
                 frequency_penalty: 0.0,
