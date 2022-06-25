@@ -29,7 +29,7 @@ export class CorrectGrammarCommand extends Command {
             const lang = userArgument.split(' ')[0];
             if(!lang) return message.reply('Please input your lang');
             let pickTheLang = LANG.filter(x => x.name.includes(lang.toLocaleLowerCase()) || x.code == lang.toLocaleLowerCase())[0]
-            if(!pickTheLang) return message.reply('Invalid language');
+            if(!pickTheLang) return message.reply(`The language you are using is not supported. The supported language is:\`\`\`\n${LANG.map(x => x.name[0]).join(', ')}\`\`\``);
 
             const text = userArgument.split(' ').slice(1).join(' ');
 
@@ -37,7 +37,7 @@ export class CorrectGrammarCommand extends Command {
 
             const response = await this.container.client.openai.createCompletion({
                 model: this.container.client.config.OPENAI.model,
-                prompt: `Corret this to standard ${pickTheLang.name[0]}:\n\n${text}`,
+                prompt: `Corret this text to standard ${pickTheLang.name[0]}:\n\n${text}`,
                 temperature: 1,
                 max_tokens: 60,
                 top_p: 1.0,
@@ -47,7 +47,7 @@ export class CorrectGrammarCommand extends Command {
 
             let newcorrect = response.data.choices![0].text?.replace(/\n/g, '');
 
-            return message.reply(`**OLD**:\n\`\`\`\n${text}\`\`\`\n**NEW**:\n\`\`\`\n${newcorrect}\`\`\``)
+            return message.reply(`**Old**:\n\`\`\`\n${text}\`\`\`\n**New**:\n\`\`\`\n${newcorrect}\`\`\``)
         } catch (e) {
             return message.reply(`\`\`\`js\n${e}\`\`\``)
         }
