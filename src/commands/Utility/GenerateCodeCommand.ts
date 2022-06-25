@@ -5,11 +5,13 @@ import { ApplyOptions } from '@sapphire/decorators';
 const LANG = [
     {
         name: ['Javascript', 'Js'],
-        comment: '//'
+        comment: '//',
+        format: "js"
     },
     {
         name: ['Python', 'Py'],
-        comment: '#'
+        comment: '#',
+        format: "py"
     }
 ]
 
@@ -50,7 +52,7 @@ export class generateCodeCommand extends Command {
 
         let response = await this.container.client.openai.createCompletion({
             model: this.container.client.config.OPENAI.model,
-            prompt: `${getCode?.slice(1).join(' ').split(new RegExp(getLanguage.comment, 'g')).slice(1).map(x => `${getLanguage.comment}${x}`).join('\n')}\n\n${getLanguage.name[0]}:`,
+            prompt: `${getCode?.slice(1).join(' ').split(new RegExp(getLanguage.comment, 'g')).slice(1).map(x => `${getLanguage.comment}${x}`).join('\n')} in ${getLanguage.name[0]}\n\n${getLanguage.name[0]}:`,
             temperature: 1,
             max_tokens: 60,
             top_p: 1.0,
@@ -61,7 +63,7 @@ export class generateCodeCommand extends Command {
         // console.log(`${getCode}\n\n${getLanguage.name[0]}`)
         console.log(response.data.choices![0]);
         // console.log(getCode?.splice(1).map(x => `//${x}`).join('\n').trim());
-        return message.reply(`\`\`\`${code}\n${response.data.choices![0].text}\`\`\``)
+        return message.reply(`\`\`\`${getLanguage.format}\n${response.data.choices![0].text}\`\`\``)
         // return message.reply('ok')
     }
 }
