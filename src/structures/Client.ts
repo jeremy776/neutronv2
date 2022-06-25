@@ -4,6 +4,12 @@ import { join } from 'path';
 import { Prefix } from '../config';
 import config from '../config';
 import "@sapphire/plugin-api/register";
+import { Configuration, OpenAIApi } from 'openai';
+
+const configuration = new Configuration({
+	apiKey: config.OPENAI.api
+});
+let openAi =  new OpenAIApi(configuration); 
 
 export class Client extends SapphireClient {
 	public constructor(clientOptons?: SapphireClientOptions) {
@@ -28,10 +34,12 @@ export class Client extends SapphireClient {
 		});
 	}
 	public config = config;
+	public openai = openAi;
 }
 
 declare module "@sapphire/framework" {
 	export interface SapphireClient {
 		config: typeof config;
+		openai: typeof openAi;
 	}
 }

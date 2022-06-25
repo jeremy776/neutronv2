@@ -32,7 +32,7 @@ export class HelpCommand extends Command {
 		  "information": "<:info:947920627505958935>"
 		}
 		const embed = new MessageEmbed()
-		.setDescription(`・My global prefix is \`${this.container.client.options.defaultPrefix}\`\n<:reply_1:947503681719382066>・Type \`${this.container.client.fetchPrefix(message)}help [command]\` for more info command`)
+		.setDescription(`・My prefix is \`${this.container.client.options.defaultPrefix}\`\n<:reply_1:947503681719382066>・Type \`${this.container.client.options.defaultPrefix}help [command]\` for more info about the command`)
 		.setAuthor({ name: `${this.container.client.user?.username}`, iconURL: `${this.container.client.user?.displayAvatarURL()}` })
 		.setColor(this.container.client.config.Color);
 		for(let category of categories) {

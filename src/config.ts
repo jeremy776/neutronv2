@@ -1,11 +1,15 @@
 import { ActivityType, ColorResolvable } from 'discord.js';
 
-export const Prefix: string = process.env.prefix || "jer ";
-export const Token: string = process.env.token || "NzAyODc0MDI1MTg5MTc5NTMz.XqGYcg.w9RMDHZs3mbhx6N6OrfthHe3gW8";
+export const Prefix: string = process.env.prefix || ".";
+export const Token: string = process.env.token || "NzAyODc0MDI1MTg5MTc5NTMz.GpoaZs.IvbS6onHnTem-jSoKzGw797u4kz6pUklOOYKNY";
 export const Activity: string = "on Development";
 export const MongoDB: string = process.env.mongodb || 'mongodb+srv://jeremykusuma:christianjeremykusuma@cluster0.d0mjj.mongodb.net/boteconomy?retryWrites=true&w=majority';
 export const BotActivityType: Exclude<ActivityType, "CUSTOM"> = "STREAMING";
 export const Color: Exclude<ColorResolvable, "HEX"> = "GREEN";
+export const OPENAI = {
+    api: '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',
+    model: 'text-davinci-002'
+}
 
 export default {
     Prefix,
@@ -13,5 +17,6 @@ export default {
     Activity,
     MongoDB,
     BotActivityType,
-    Color
+    Color,
+    OPENAI
 }
