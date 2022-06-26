@@ -11,15 +11,8 @@ export class EvalCommand extends Command {
   public constructor(ctx: Command.Context, options: Command.Options) {
     super(ctx, {
       ...options,
-      flags: true,
-      chatInputCommand: {
-        register:true
-      }
+      flags: true
     })
-  }
-  
-  async chatInputRun(interaction: Command.ChatInputInteraction) {
-    return interaction.reply({content: "hello world"});
   }
   
   async messageRun(msg: Message, args: Args) {
