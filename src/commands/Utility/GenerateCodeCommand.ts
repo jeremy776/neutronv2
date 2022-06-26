@@ -6,11 +6,25 @@ const LANG = [
     {
         name: ['Javascript', 'Js'],
         comment: '[(/*)(*/)]',
+        normalComment: "//",
         format: "js"
+    },
+    {
+        name: ['Typescript', 'Ts'],
+        comment: '[(/*)(*/)]',
+        normalComment: "//",
+        format: "ts"
+    },
+    {
+      name: ["Rust", "R"],
+      comment: "[(/)(/)]",
+      normalComment: "//",
+      format: "rust"
     },
     {
         name: ['Python', 'Py'],
         comment: '#',
+        normalComment: "#",
         format: "py"
     },
     {
@@ -36,27 +50,29 @@ export class generateCodeCommand extends Command {
         let splitArgs = str.value?.split(' ');
         let getCode = splitArgs?.join(' ').split(/[```]+/g)[1].replace(/\n/g, ' ').split(' ');
 
-        let code: any;
-
-        LANG.filter(x => x.name.map(y=>y.toLocaleLowerCase()).includes(getCode![0].replace(/([a-z A-Z 0-9])/g, '$1.').split('.').slice(0, -1).join(''))).length !== 0
-        ? code = LANG.filter(x => x.name.map(y=>y.toLocaleLowerCase()).includes(getCode![0].replace(/([a-z A-Z 0-9])/g, '$1.').split('.').slice(0, -1).join('')))[0].name[0]
-        : null // message.reply(`The language you are using is not supported. The supported language is: \`\`\`\n${LANG.map(x => x.name[0])}\`\`\``);
+        let code = splitArgs![0].split(/`/g)[0].trim();
         
-        if(!code) code = splitArgs![0].split(/`/g)[0];
-
+        if(!code) {
+          LANG.filter(x => x.name.map(y=>y.toLocaleLowerCase()).includes(getCode![0].replace(/([a-z A-Z 0-9])/g, '$1.').split('.').slice(0, -1).join(''))).length !== 0
+          ? code = LANG.filter(x => x.name.map(y=>y.toLocaleLowerCase()).includes(getCode![0].replace(/([a-z A-Z 0-9])/g, '$1.').split('.').slice(0, -1).join('')))[0].name[0]
+          : null // message.reply(`The language you are using is not supported. The supported language is: \`\`\`\n${LANG.map(x => x.name[0])}\`\`\``);
+        }
+        //if(!code) code = splitArgs![0].split(/`/g)[0];
+        
+        console.log(code, splitArgs![0].split(/`/g)[0].trim())
         if(!code) return message.reply(`The language you are using is not supported. The supported language is: \`\`\`\n${LANG.map(x => x.name[0]).join(', ')}\`\`\``);
         
         // if(!code) return message.reply(`The language you are using is not supported. The supported language is: \`\`\`\n${LANG.map(x => x.name[0])}\`\`\``)
-        console.log(`${getCode?.slice(1)}`)
+        //console.log(`${getCode?.slice(1)}`)
 
         let getLanguage = LANG.filter(x => x.name.map(y => y.toLowerCase()).includes(code.toLocaleLowerCase()))[0];
         
         
-        if(!getLanguage) return message.reply(`The language you are using is not supported. The supported language is: \`\`\`\n${LANG.map(x => x.name[0])}\`\`\``)
+        if(!getLanguage) return message.reply(`The language you are using is not supported. The supported language is: \`\`\`\n${LANG.map(x => x.name[0]).join(", ")}\`\`\``)
 
         let response = await this.container.client.openai.createCompletion({
             model: this.container.client.config.OPENAI.model,
-            prompt: `${getCode?.slice(1).join(' ').split(new RegExp(getLanguage.comment, 'g')).slice(1).map(x => `${getLanguage.comment}${x}`).join('\n')} in ${getLanguage.name[0]}\n\n${getLanguage.name[0]}:`,
+            prompt: `${getCode?.slice(1).join(' ').split(new RegExp(getLanguage.comment, 'g')).slice(1).map(x => `${getLanguage.normalComment}${x}`).join('\n')}\n${getLanguage.normalComment} language: ${getLanguage.name[0]}\n\n${getLanguage.name[0]}:`,
             temperature: 1,
             max_tokens: 1500,
             top_p: 1.0,

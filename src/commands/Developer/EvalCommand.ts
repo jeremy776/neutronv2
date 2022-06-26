@@ -11,17 +11,25 @@ export class EvalCommand extends Command {
   public constructor(ctx: Command.Context, options: Command.Options) {
     super(ctx, {
       ...options,
-      flags: true
+      flags: true,
+      chatInputCommand: {
+        register:true
+      }
     })
+  }
+  
+  async chatInputRun(interaction: Command.ChatInputInteraction) {
+    return interaction.reply({content: "hello world"});
   }
   
   async messageRun(msg: Message, args: Args) {
     try {
       if(!["428922145108656139", "679652448058867753"].includes(msg.author.id)) return;
       let evalute = await args.rest("string");
+      console.log(evalute)
       let isAsync = await args.getFlags("async");
       let message = msg;
-      if(!evalute) {''
+      if(!evalute) {
         throw new TypeError("Eval commad cannot execute without input.")
       }
       
