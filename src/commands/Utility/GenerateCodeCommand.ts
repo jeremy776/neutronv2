@@ -16,6 +16,12 @@ const LANG = [
         format: "ts"
     },
     {
+      name: ["C++", "cpp"],
+      comment: "[(/*)(*/)]",
+      normalComment: "//",
+      format: "cpp"
+    },
+    {
       name: ["Rust", "R"],
       comment: "[(/)(/)]",
       normalComment: "//",
